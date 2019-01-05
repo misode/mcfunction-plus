@@ -1,0 +1,21 @@
+name: 'mcfunction'
+scopeName: 'text.mcfunction'
+type: 'tree-sitter'
+parser: 'tree-sitter-html'
+
+fileTypes: [
+  'mcfunction'
+]
+
+injectionRegExp: '(Mcfunction|mcfunction|MCFunction)'
+
+folds: []
+
+comments:
+  start: '#'
+
+scopes:
+  'comment': 'comment'
+  'command': 'command'
+  'selector': 'argument'
+  'selector_argument': 'selector-argument'
