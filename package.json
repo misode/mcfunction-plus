@@ -1,10 +1,9 @@
 {
   "name": "mcfunction-plus",
   "main": "./lib/mcfunction-plus",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A syntax highlighter for Minecraft functions using tree-sitter-mcfunction",
-  "keywords": [
-  ],
+  "keywords": [],
   "repository": "https://github.com/misode/mcfunction-plus",
   "license": "MIT",
   "engines": {
