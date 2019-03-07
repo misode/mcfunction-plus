@@ -1,0 +1,3 @@
+'.source.mcfunction':
+  'autocomplete':
+    'extraWordCharacters': '0123456789'

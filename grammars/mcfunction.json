@@ -1,0 +1,181 @@
+{
+	"scopeName": "source.mcfunction",
+	"name": "mcfunction",
+	"fileTypes": ["mcfunction"],
+	"patterns": [
+		{
+			"name": "argument",
+			"begin": "(@[parse])\\[",
+			"beginCaptures": {
+				"1": {
+					"name": "selector"
+				}
+			},
+			"end": "\\]",
+			"patterns": [
+				{
+					"match": "([\\w_]+)(?==)",
+					"captures": {
+						"1": {
+							"name": "name"
+						}
+					}
+				},
+				{
+					"begin": "(?<==)",
+					"end": "(?=,|\\])",
+					"name": "value",
+					"patterns": [
+						{
+							"begin": "\"",
+							"end": "\"",
+							"patterns": [
+								{
+									"match": "\\\\(?:[\"\\\\/bfnrt])|(?:u[0-9a-fA-F]{4})"
+								}
+							]
+						},
+						{
+							"match": "[\\w_]"
+						},
+						{
+							"include": "#nbt-compound"
+						}
+					]
+				}
+			]
+		},
+		{
+			"match": "@[parse]",
+			"name": "selector"
+		},
+		{
+			"include": "#nbt-compound"
+		},
+		{
+			"match": "(?:^|(?<=run ))(?:advancement|clear|clone|data|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|kill|locate|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|tag|team|seed|setblock|setworldspawn|spreadplayers|stopsound|summon|teleport|tellraw|tell|time|title|tp|trigger|w|weather|worldborder|xp|spawnpoint)\\b",
+			"name": "command"
+		},
+		{
+			"match": "\\b(players|objectives|scoreboard|set|add|reset|entity|matches|operation|remove|title|actionbar|subtitle|master|grant|revoke|everything|from|until|only|through|join|leave|dummy|option|color|if|unless|keep|replace|destroy|as|at|from|in|anchored|positioned|score|rotated|facing|align|store|run|merge|get|survival|creative|adventure|spectator|block|entity|give|clear|levels|points|true|false|list)\\b",
+			"name": "subcommand"
+		},
+		{
+			"match": "^#.*",
+			"name": "comment"
+		},
+		{
+			"match": "[ :=]([~\\^]?-?[0-9\\.]+[bsfdi]?)",
+			"name": "number-area",
+			"captures": {
+				"1": {
+					"name": "number"
+				}
+			}
+		},
+		{
+			"match": "[~\\^\\*]",
+			"name": "number"
+		},
+		{
+			"match": "^/",
+			"name": "error.fslash"
+		},
+		{
+			"match": "\\[(?:(?:(\\w+)=(\\w+)),)*(?:(\\w+)=(\\w+))\\]",
+			"name": "state",
+			"captures": {
+				"1": {
+					"name": "name"
+				},
+				"3": {
+					"name": "name"
+				},
+				"2": {
+					"name": "value"
+				},
+				"4": {
+					"name": "value"
+				}
+			}
+		}
+	],
+	"repository": {
+		"nbt-array": {
+			"begin": "\\[",
+			"end": "\\]",
+			"name": "array",
+			"patterns": [
+				{
+					"include": "#nbt-value"
+				}
+			]
+		},
+		"nbt-compound": {
+			"begin": "{",
+			"end": "}",
+			"name": "compound.nbt",
+			"patterns": [
+				{
+					"include": "#nbt-key-quoted"
+				},
+				{
+					"include": "#nbt-key-unquoted"
+				},
+				{
+					"begin": ":[\\t_]*",
+					"end": "(?=[\\t ]*}|,)",
+					"patterns": [
+						{
+							"include": "#nbt-value"
+						}
+					]
+				}
+			]
+		},
+		"nbt-key-quoted": {
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"match": "\\\\(?:[\"\\\\/bfnrt])|(?:u[0-9a-fA-F]{4})"
+				}
+			],
+			"name": "key.nbt"
+		},
+		"nbt-key-unquoted": {
+			"match": "[\\w_]+",
+			"name": "key"
+		},
+		"nbt-value": {
+			"patterns": [
+				{
+					"include": "#nbt-string"
+				},
+				{
+					"include": "#nbt-number"
+				},
+				{
+					"include": "#nbt-compound"
+				},
+				{
+					"include": "#nbt-array"
+				}
+			]
+		},
+		"nbt-string": {
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"match": "\\\\(?:[\"\\\\/bfnrt])|(?:u[0-9a-fA-F]{4})"
+				}
+			],
+			"name": "value.string.nbt"
+		},
+		"nbt-number": {
+			"match": "-?\\d+(?:\\.\\d+)?[bfdl]?",
+			"name": "value.number.nbt"
+		}
+	}
+}
