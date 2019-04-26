@@ -53,11 +53,11 @@
 			"include": "#nbt-compound"
 		},
 		{
-			"match": "(?:^|(?<=run ))(?:advancement|clear|clone|data|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|kill|locate|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|tag|team|seed|setblock|setworldspawn|spreadplayers|stopsound|summon|teleport|tellraw|tell|time|title|tp|trigger|w|weather|worldborder|xp|spawnpoint)\\b",
+			"match": "(?:^|(?<=run ))(?:advancement|clear|clone|data|defaultgamemode|difficulty|effect|execute|experience|fill|function|gamemode|gamerule|give|kill|locate|msg|particle|playsound|recipe|reload|replaceitem|say|scoreboard|tag|team|seed|setblock|setworldspawn|spreadplayers|stopsound|summon|teleport|tellraw|tell|time|title|tp|trigger|w|weather|worldborder|xp|spawnpoint|loot|schedule|teammsg|tm|forceload)\\b",
 			"name": "command"
 		},
 		{
-			"match": "\\b(players|objectives|scoreboard|set|add|reset|entity|matches|operation|remove|title|actionbar|subtitle|master|grant|revoke|everything|from|until|only|through|join|leave|dummy|option|color|if|unless|keep|replace|destroy|as|at|from|in|anchored|positioned|score|rotated|facing|align|store|run|merge|get|survival|creative|adventure|spectator|block|entity|give|clear|levels|points|true|false|list)\\b",
+			"match": "\\b(spawn|players|objectives|scoreboard|set|add|reset|entity|matches|operation|remove|title|actionbar|subtitle|master|grant|revoke|everything|from|until|only|through|join|leave|dummy|option|color|if|unless|keep|replace|destroy|as|at|in|anchored|positioned|score|rotated|facing|align|store|run|merge|get|survival|creative|adventure|spectator|block|entity|give|clear|levels|points|true|false|list|insert|kill|mine|loot|fish|function|modify|append|prepend|merge|query|value)\\b",
 			"name": "subcommand"
 		},
 		{
